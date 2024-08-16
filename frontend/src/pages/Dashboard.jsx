@@ -116,8 +116,8 @@ const Dashboard = () => {
       <Wrapper>
         <Title>Dashboard</Title>
         <FlexWrap>
-          {counts.map((item) => (
-            <CountsCard item={item} data={data} />
+          {counts.map((item, index) => (
+            <CountsCard key={index} item={item} data={data} />
           ))}
         </FlexWrap>
 
