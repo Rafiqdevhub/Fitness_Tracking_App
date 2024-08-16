@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import LogoImage from "../utils/Images/Logo.png";
 import AuthImage from "../utils/Images/AuthImage.jpg";
@@ -75,7 +75,7 @@ const Authentication = () => {
           <>
             <SignIn />
             <Text>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <TextButton onClick={() => setLogin(true)}>SignUp</TextButton>
             </Text>
           </>
