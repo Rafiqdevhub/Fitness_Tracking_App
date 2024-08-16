@@ -1,16 +1,15 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const { createError } = require("../error.js");
 const User = require("../models/userModel.js");
 const Workout = require("../models/workoutModel.js");
+const createError = require("../error.js");
 
 dotenv.config();
 const UserRegister = async (req, res, next) => {
   try {
     const { email, password, name, img } = req.body;
 
-    // Check if the email is in use
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return next(createError(409, "Email is already in use."));
@@ -38,14 +37,12 @@ const UserLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email: email });
-    // Check if user exists
+    const user = await User.findOne({ email });
     if (!user) {
       return next(createError(404, "User not found"));
     }
-    console.log(user);
-    // Check if password is correct
-    const isPasswordCorrect = await bcrypt.compareSync(password, user.password);
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return next(createError(403, "Incorrect password"));
     }
@@ -54,7 +51,9 @@ const UserLogin = async (req, res, next) => {
       expiresIn: "9999 years",
     });
 
-    return res.status(200).json({ token, user });
+    const { password: _, ...userWithoutPassword } = user._doc;
+
+    return res.status(200).json({ token, user: userWithoutPassword });
   } catch (error) {
     return next(error);
   }
