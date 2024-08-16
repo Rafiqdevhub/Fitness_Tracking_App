@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { counts } from "../utils/data";
 import CountsCard from "../components/cards/CountsCard";

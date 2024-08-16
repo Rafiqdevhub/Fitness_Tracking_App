@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import LogoImg from "../utils/Images/Logo.png";
 import { Link as LinkR, NavLink } from "react-router-dom";
@@ -138,23 +138,17 @@ const Navbar = ({ currentUser }) => {
         </Mobileicon>
         <NavLogo to="/">
           <Logo src={LogoImg} />
-          Fittrack
+          Fitness
         </NavLogo>
 
         <MobileMenu isOpen={isOpen}>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
-          <Navlink to="/tutorials">Tutorials</Navlink>
-          <Navlink to="/blogs">Blogs</Navlink>
-          <Navlink to="/contact">Contact</Navlink>
         </MobileMenu>
 
         <NavItems>
           <Navlink to="/">Dashboard</Navlink>
           <Navlink to="/workouts">Workouts</Navlink>
-          <Navlink to="/tutorials">Tutorials</Navlink>
-          <Navlink to="/blogs">Blogs</Navlink>
-          <Navlink to="/contact">Contact</Navlink>
         </NavItems>
 
         <UserContainer>

@@ -1,5 +1,5 @@
 import { CloseRounded, Visibility, VisibilityOff } from "@mui/icons-material";
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
