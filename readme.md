@@ -33,8 +33,8 @@ npm install
 
 # For the frontend
 
-````cd ../frontend
-npm install ```
+```cd ../frontend
+npm install
 
 # Start the backend server
 
@@ -46,4 +46,4 @@ npm run dev
 cd ../frontend
 npm run dev
 
-````
+```
