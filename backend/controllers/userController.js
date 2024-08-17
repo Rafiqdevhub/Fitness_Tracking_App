@@ -211,11 +211,14 @@ const addWorkout = async (req, res, next) => {
   try {
     const userId = req.user?.id;
     const { workoutString } = req.body;
+
     if (!workoutString) {
       return next(createError(400, "Workout string is missing"));
     }
+
     const eachworkout = workoutString.split(";").map((line) => line.trim());
     const categories = eachworkout.filter((line) => line.startsWith("#"));
+
     if (categories.length === 0) {
       return next(createError(400, "No categories found in workout string"));
     }
@@ -224,11 +227,10 @@ const addWorkout = async (req, res, next) => {
     let currentCategory = "";
     let count = 0;
 
-    await eachworkout.forEach((line) => {
+    eachworkout.forEach((line) => {
       count++;
       if (line.startsWith("#")) {
         const parts = line?.split("\n").map((part) => part.trim());
-        console.log(parts);
         if (parts.length < 5) {
           return next(
             createError(400, `Workout string is missing for ${count}th workout`)
@@ -237,6 +239,7 @@ const addWorkout = async (req, res, next) => {
 
         currentCategory = parts[0].substring(1).trim();
         const workoutDetails = parseWorkoutLine(parts);
+
         if (workoutDetails == null) {
           return next(createError(400, "Please enter in proper format "));
         }
@@ -252,10 +255,22 @@ const addWorkout = async (req, res, next) => {
       }
     });
 
-    await parsedWorkouts.forEach(async (workout) => {
+    for (const workout of parsedWorkouts) {
       workout.caloriesBurned = parseFloat(calculateCaloriesBurnt(workout));
-      await Workout.create({ ...workout, user: userId });
-    });
+
+      const existingWorkout = await Workout.findOne({
+        workoutName: workout.workoutName,
+        user: userId,
+      });
+
+      if (!existingWorkout) {
+        await Workout.create({ ...workout, user: userId });
+      } else {
+        console.log(
+          `Workout with name "${workout.workoutName}" already exists for the user.`
+        );
+      }
+    }
 
     return res.status(201).json({
       message: "Workouts added successfully",
