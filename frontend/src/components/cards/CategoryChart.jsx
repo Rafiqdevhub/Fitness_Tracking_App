@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { PieChart } from "@mui/x-charts/PieChart";
 

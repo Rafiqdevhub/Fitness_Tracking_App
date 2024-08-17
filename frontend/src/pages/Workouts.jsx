@@ -104,13 +104,13 @@ const Workouts = () => {
         </Left>
         <Right>
           <Section>
-            <SecTitle>Todays Workout</SecTitle>
+            <SecTitle>Today Workout</SecTitle>
             {loading ? (
               <CircularProgress />
             ) : (
               <CardWrapper>
-                {todaysWorkouts.map((workout) => (
-                  <WorkoutCard workout={workout} />
+                {todaysWorkouts.map((workout, index) => (
+                  <WorkoutCard key={index} workout={workout} />
                 ))}
               </CardWrapper>
             )}

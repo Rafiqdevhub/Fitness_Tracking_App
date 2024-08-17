@@ -61,7 +61,7 @@ const SignUp = () => {
   return (
     <Container>
       <div>
-        <Title>Create New Account 👋</Title>
+        <Title>Create New Account</Title>
         <Span>Please enter details to create a new account</Span>
       </div>
       <div
