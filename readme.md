@@ -12,7 +12,7 @@ A comprehensive fitness tracking app built with the MERN (MongoDB, Express, Reac
 
 ## Tech Stack
 
-- **Frontend**: React, React Router DOM
+- **Frontend**: React, styled-component, Material UI, axios, dayjs, React Router DOM
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JSON Web Tokens (JWT)
