@@ -25,3 +25,23 @@ A comprehensive fitness tracking app built with the MERN (MongoDB, Express, Reac
    git clone https://github.com/Rafiqdevhub/Fitness_Tracking_App.git
    cd Fitness_Tracking_App
    ```
+
+# For the backend
+
+cd backend
+npm install
+
+# For the frontend
+
+cd ../frontend
+npm install
+
+# Start the backend server
+
+cd backend
+npm run dev
+
+# Start the frontend server
+
+cd ../frontend
+npm run dev
